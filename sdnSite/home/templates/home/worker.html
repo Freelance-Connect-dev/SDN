@@ -1,0 +1,9 @@
+{% if latest_posting_list %}
+    <ul>
+    {% for Posting in latest_posting_list %}
+        <li><a href="/home/{{ Posting.id }}/">{{ Posting.Posting_text }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No Job postings are available.</p>
+{% endif %}

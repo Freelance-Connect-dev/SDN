@@ -3,5 +3,10 @@ from . import views
 
 
 urlpatterns = [
-    url(r'main', views.main),
+    # ex: /home/
+    url(r'^$', views.index, name='index'),
+    # ex: /home/worker/
+    url(r'^worker/$', views.worker, name='worker'),
+    # ex: /home/employer/
+    url(r'^employer/$', views.employer, name='employer'),
 ]

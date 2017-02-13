@@ -26,14 +26,19 @@ after installing django, clone repo and navigate to sdnSite folder. within that 
 
 Our Structure so far:
   home
-    guest-index (http://127.0.0.1:8000/home/)
-    worker-index(http://127.0.0.1:8000/home/worker)
-    employer-index(http://127.0.0.1:8000/home/employer)
+
+  --guest-index (http://127.0.0.1:8000/home/)
+  --worker-index(http://127.0.0.1:8000/home/worker)
+  --employer-index(http://127.0.0.1:8000/home/employer)
+
   accounts
-    login     (http://127.0.0.1:8000/accounts/login)
-    create worker (http://127.0.0.1:8000/accounts/new_worker)
-    create employer(http://127.0.0.1:8000/accounts/new_employer)
+
+  --login     (http://127.0.0.1:8000/accounts/login)
+  --create worker (http://127.0.0.1:8000/accounts/new_worker)
+  --create employer(http://127.0.0.1:8000/accounts/new_employer)
+
   posting
-    jobs      (http://127.0.0.1:8000/posting/job)
-    employment(http://127.0.0.1:8000/posting/employment)
-    for hire  (http://127.0.0.1:8000/posting/for_hire)
+
+  --jobs      (http://127.0.0.1:8000/posting/job)
+  --employment(http://127.0.0.1:8000/posting/employment)
+  --for hire  (http://127.0.0.1:8000/posting/for_hire)

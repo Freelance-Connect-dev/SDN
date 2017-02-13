@@ -9,7 +9,7 @@ This website aims to become the foundation for which free lance software develop
 
 #Technology
 
-We are using Django, along with html, css, js and bootstrap and a mysql back end (through django)
+We are using Django with python 3.5, along with html, css, js and bootstrap and a mysql back end (through django)
 
 #Django Help
 
@@ -21,6 +21,11 @@ after installing django, clone repo and navigate to sdnSite folder. within that 
 *when updating or adding new models for database, run 'python manage.py migrate' to make sure django applies changes to back end*
 
 *when creating a new page directory use 'python manage.py startapp'*
+
+#Bootstrap Help
+
+resources:
+https://github.com/dyve/django-bootstrap3/tree/develop/bootstrap3
 
 #Website Structure
 

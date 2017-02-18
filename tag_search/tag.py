@@ -1,9 +1,6 @@
-##Author: Scott Franz
-#Base tag class used to derive other tags from.
-
-
 class tag():
     """
+    Author: Scott Franz
     Base tag class for other tag types in tag_search.
     Params:
     self.id 'String id of tag.'
@@ -18,7 +15,7 @@ class tag():
         self.link_array = link_array
     
         
-    def to_string(self):
+    def __str__(self):
         return "tag::tag(" + str(self.id) + "," + str(self.weight) + "," + str(self.link_array) + ")"
         
     def add_link(self, other):

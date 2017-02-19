@@ -2,10 +2,10 @@ from django.shortcuts import render, HttpResponse
 
 # Create your views here.
 def forhire(request):
-    return HttpResponse('This is where workers can post themselves for employment or work')
+    return render(request, 'posting/workforhire.html')
 
 def job(request):
-    return HttpResponse('This is where Conctractors or Workers can post a job that needs to be done')
+    return render(request, 'posting/job.html')
 
 def employment(request):
-    return HttpResponse('This is where Contractors can post short term/long term employment opportunities')
+    return render(request, 'posting/employment.html')

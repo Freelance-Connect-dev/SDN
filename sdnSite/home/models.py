@@ -3,6 +3,7 @@ from django.utils import timezone
 
 # Create your models here.
 class Posting(models.Model):
+
 	job_id = models.IntegerField(default=0);
 	contractor_id = models.CharField(default=0, max_length=30)
 	employer_id = models.CharField(default=1, max_length=30)

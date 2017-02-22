@@ -7,11 +7,11 @@ Freelance Connect - CSCI 427
 
 This website aims to become the foundation for which free lance software development work is posted and bid on.
 
-#Technology
+# Technology
 
 We are using Django with python 3.5, along with html, css, js and bootstrap and a mysql back end (through django)
 
-#Django Help
+# Django Help
 
 Tutorials:
 *post links here*
@@ -22,12 +22,44 @@ after installing django, clone repo and navigate to sdnSite folder. within that 
 
 *when creating a new page directory use 'python manage.py startapp'*
 
-#Bootstrap Help
+# Bootstrap Help
 
 resources:
 https://github.com/dyve/django-bootstrap3/tree/develop/bootstrap3
 
-#Website Structure
+# Setup
+
+### Developing Locally
+
+#### Dependencies
+Python 3.5: https://www.python.org/downloads/release/python-350/
+
+Pip:
+https://pip.pypa.io/en/stable/installing/
+
+Django 1.10:
+After pip is installed, run the command `pip install django`
+
+#### Build
+Once the Dependencies are installed, pull files from the repository to your local machine. Go to the command line, and move to the folder in the project in which `manage.py` exists. For example, on my PC: 
+
+`cd C:\Users\Daddy Schurg\Documents\School\Senior yr 2\Spring 17\csci 427\SDN\SDN\sdnSite`
+
+We must then initialize the database based on our Python Models class. To do this, run:
+
+`python manage.py makemigrations`
+
+Then:
+
+`python manage.py migrate`
+
+And finally, to start our local server:
+
+`python manage.py runserver`
+
+If the server build is successful, you will be given an IP address, usually http://127.0.0.1:8000/. If you go to this address, you will be 404'ed. Go to http://127.0.0.1:8000/home/ instead to find the home page.
+
+# Website Structure
 
 Our Structure so far:
   home

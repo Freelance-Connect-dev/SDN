@@ -1,10 +1,10 @@
 class item:
 
-"""
-Author: Scott Franz
+    """
+    Author: Scott Franz
 
-Class to store and handle item information. Associated with tags.
-"""
+    Class to store and handle item information. Associated with tags.
+    """
 
     def __init__(self, id):
         """

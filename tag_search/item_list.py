@@ -1,5 +1,6 @@
-class item_list:
+from item import item
 
+class item_list:
     """
     Author: Scott Franz
 
@@ -20,6 +21,8 @@ class item_list:
             for line in file:
                 #FIXME
                 lpart = line.rstrip().split(",")
+                new_item = item(lpart[0])
+                self.item_list.append(new_item)
 #                print(lpart[0])
                 
     def search_by_id(self, id_str):

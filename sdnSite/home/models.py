@@ -16,7 +16,7 @@ class Posting(models.Model):
 
 class Member(models.Model):
 	email = models.EmailField(primary_key=True)
-	name = models.CharField(max_length=50)
+	name = models.CharField(max_length=50,unique=True)
 	phone = models.IntegerField()
 	address = models.CharField(max_length=50)
 	biography = models.CharField(max_length=300)

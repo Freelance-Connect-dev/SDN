@@ -5,7 +5,7 @@ def login(request):
     return render(request, 'accounts/login.html')
 
 def newemployer(request):
-    return HttpResponse('This is the creation page for new Contractors')
+    return render(request, 'accounts/new_employer.html')
 
 def newworker(request):
-    return HttpResponse('This is the creation page for new workers')
+    return render(request, 'accounts/new_worker.html')

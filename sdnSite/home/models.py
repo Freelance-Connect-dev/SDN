@@ -26,7 +26,7 @@ class Member(models.Model):
 class Image(models.Model):
 	image_id = models.CharField(max_length=30)
 	member_id = models.ForeignKey(Member,on_delete=models.CASCADE)
-	image_reference = models.ImageField()
+	#image_reference = models.ImageField() #lets just fill this attribute with image links
 	title = models.CharField(max_length=30)
 	profile_picture = models.BooleanField(default=False);
 

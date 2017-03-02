@@ -7,7 +7,7 @@ python:
 install: "pip install -r requirements.txt"
 # command to run tests
 script:
-    cd .\sdnsite\
-    python manage.py makemigrations
-    python manage.py migrate
-    python manage.py runserver
+  - cd .\sdnsite\
+  - python manage.py makemigrations
+  - python manage.py migrate
+  - python manage.py runserver

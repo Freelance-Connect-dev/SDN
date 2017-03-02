@@ -6,7 +6,8 @@ python:
 env:
   global:
     - PYTHONPATH="/home/travis/build/Freelance-Connect-dev/SDN"
-  DJANGO=1.10
+  matrix:
+    - DJANGO=1.10
 # command to install dependencies
 install:
   - pip install -r requirements.txt

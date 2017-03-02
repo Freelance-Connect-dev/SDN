@@ -11,9 +11,10 @@ env:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-  - pip install -q Django==$DJANGO --use-mirrors
+  - pip install -q Django==$DJANGO
 # command to run tests
 script:
+  - ls
   - python manage.py makemigrations
   - python manage.py migrate
   - python manage.py runserver

@@ -12,6 +12,7 @@ env:
 install:
   - pip install -r requirements.txt
   - pip install -q Django==$DJANGO
+  - pip install pillow
 # command to run tests
 script:
   - ls

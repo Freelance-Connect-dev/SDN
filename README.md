@@ -5,7 +5,7 @@ Freelance Connect - CSCI 427
 
 # Synopsis
 
-This website aims to become the foundation for which free lance software development work is posted and bid on.
+This website aims to become the foundation for which free lance software development work is posted and bid on. ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
 
 # Technology
 
@@ -41,7 +41,7 @@ Django 1.10:
 After pip is installed, run the command `pip install django`
 
 #### Build
-Once the Dependencies are installed, pull files from the repository to your local machine. Go to the command line, and move to the folder in the project in which `manage.py` exists. For example, on my PC: 
+Once the Dependencies are installed, pull files from the repository to your local machine. Go to the command line, and move to the folder in the project in which `manage.py` exists. For example, on my PC:
 
 `cd C:\Users\Daddy Schurg\Documents\School\Senior yr 2\Spring 17\csci 427\SDN\SDN\sdnSite`
 

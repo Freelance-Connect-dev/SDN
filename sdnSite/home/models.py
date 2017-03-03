@@ -20,6 +20,7 @@ class Member(models.Model):
 	phone = models.IntegerField()
 	address = models.CharField(max_length=50)
 	biography = models.CharField(max_length=300)
+	business = models.BooleanField(default=False)
 	#Account links could become its own table to
 	#ensure that the data entered remains atomic.
 

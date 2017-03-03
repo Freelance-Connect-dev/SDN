@@ -1,4 +1,7 @@
+from database_io.ServerResult import ServerResult
+from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
+from django.db import IntegrityError
 from django.db import models
 from home.models import Member
 
@@ -6,16 +9,22 @@ class ServerMemberIO:
 	def __init__(self):
 		self.memberManager = Member.objects
 		
-	def createMember(self,email,name,phone,address,biography):
-		member = Member(email=email,name=name,phone=phone,address=address,biography=biography)
+	def createMember(self,email,name,phone,address,biography,business):
+		member = Member(email=email,name=name,phone=phone,address=address,biography=biography,business=business)
+		'''
+		TODO
+		Check for email in database before creation
+		'''
+		serverResult = ServerResult()
 		try:
 			member.full_clean()
 			member.save()
+			serverResult.model = member
 		except ValidationError as v:
-			return v
+			serverResult.error.append(v)
 		except IntegrityError as i:
-			return i
-		return member
+			serverResult.error.append(i)
+		return serverResult
 		
 	#def deleteMember(self,member):
 		
@@ -26,21 +35,34 @@ class ServerMemberIO:
 		print("\tPhone: ",model.phone)
 		print("\tAddress: ",model.address)
 		print("\tBiography: ",model.biography)
+		print("\tBusiness: ",model.business)
 		
 	def getMemberByEmail(self,mail):
-		member = self.memberManager.get(email=mail)
-		return member
+		serverResult = ServerResult()
+		try:
+			member = self.memberManager.get(email=mail)
+			serverResult.model = member
+		except ObjectDoesNotExist as o:
+			serverResult.error.append(o)
+		return serverResult
 		
 	def getMemberByName(self,name):
-		member = self.memberManager.get(name=name)
-		return member
+		serverResult = ServerResult()
+		try:
+			member = self.memberManager.get(name=name)
+			serverResult.model = member
+		except ObjectDoesNotExist as o:
+			serverResult.error.append(o)
+		return serverResult
 		
 	def updateMember(self,member):
+		serverResult = ServerResult()
 		try:
 			member.full_clean()
 			member.save()
+			serverResult.model = member
 		except ValidationError as v:
-			return v
-		
+			serverResult.error.append(v)
+		return serverResult
 		
 		

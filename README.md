@@ -5,7 +5,7 @@ Freelance Connect - CSCI 427
 
 # Synopsis
 
-This website aims to become the foundation for which free lance software development work is posted and bid on. ggggggggggggggggggggggggggggggggggggggggggggggggggggggggggggg
+This website aims to become the foundation for which free lance software development work is posted and bid on.
 
 # Technology
 

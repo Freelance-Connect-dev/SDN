@@ -4,7 +4,8 @@ Author: Scott Franz
 Tag list to store a list of tags drawn from data base.
 """
 
-import tag
+from tag import tag
+from item import item
 
 class tag_list():
 
@@ -14,18 +15,17 @@ class tag_list():
     """
     
     def __init__(self):
-        self.tag_list = []
-        self.item_list = []
+        self.tlist = []
         
-    def add(self, tag_pair):
+    def add(self, tag):
         """
         Method to add a tag_pair to this tag_list and handle all
         database query and save requests to assure that
         the script and the database contain the same tags.
         """
-        self.tag_list.append(tag_pair)
+        self.tlist.append(tag)
         
-    def load_from_csv(self, file_name, item_list):
+    def load_from_csv(self, file_name):
         """
         Method to load test file from csv.
         """
@@ -37,14 +37,14 @@ class tag_list():
 #                print(tag_id)
                 tag_weight = lparts[1]
 #                print(tag_weight)
-                tag_links = []
+                atag = tag(tag_id, tag_weight)
                 for i in range(2, len(lparts)):
 #                    print(lparts[i])
-                    t_item = item_list.search_by_id(lparts[i
-                    if(t_item != None):
-                        tag_links.append(t_item)
+                    atag.add_item(item(lparts[i]))
                     
-                atag = tag(tag_id, tag_weight, [])
+                self.tlist.append(atag)
+                
+        print(self.tlist)
                     
 if __name__ == '__main__':
     tl = tag_list()

@@ -9,22 +9,22 @@ class tag():
     associated with.'
     """
     
-    def __init__(self, id, weight, link_array):
+    def __init__(self, id, weight, items=set()):
         self.id = id
         self.weight = weight
-        self.link_array = link_array
+        self.items = items
     
         
     def __str__(self):
-        return "tag::tag(" + str(self.id) + "," + str(self.weight) + "," + str(self.link_array) + ")"
+        return "tag::tag(" + str(self.id) + "," + str(self.weight) + "," + str(self.items) + ")"
         
-    def add_link(self, other):
+    def add_item(self, item):
         """Add a reference to another tag or other object.
         Params:
         other 'Other object this tag should link to.'
         """
         
-        self.link_array.append(other)
+        self.items.add(item)
         
     
     

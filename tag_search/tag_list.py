@@ -5,7 +5,11 @@ Tag list to store a list of tags drawn from data base.
 """
 
 from tag import tag
+<<<<<<< HEAD
 from item import item
+=======
+from item_list import item_list
+>>>>>>> d2b48d8d1d2aaf5471ba9882a49dbebe94125f7c
 
 class tag_list():
 
@@ -14,8 +18,14 @@ class tag_list():
     This class is also supposed to handle database query and saves.
     """
     
+<<<<<<< HEAD
     def __init__(self):
         self.tlist = []
+=======
+    def __init__(self, item_list):
+        self.tag_list = []
+        self.item_list = item_list
+>>>>>>> d2b48d8d1d2aaf5471ba9882a49dbebe94125f7c
         
     def add(self, tag):
         """
@@ -36,6 +46,7 @@ class tag_list():
                 tag_id = lparts[0]
 #                print(tag_id)
                 tag_weight = lparts[1]
+<<<<<<< HEAD
 #                print(tag_weight)
                 atag = tag(tag_id, tag_weight)
                 for i in range(2, len(lparts)):
@@ -45,8 +56,21 @@ class tag_list():
                 self.tlist.append(atag)
                 
         print(self.tlist)
+=======
+#                print(tag_weight)S
+                tag_links = []
+                for i in range(2, len(lparts)):
+#                    print(lparts[i])
+                    t_item = self.item_list.search_by_id(lparts[i])
+                    if(t_item != None):
+                        tag_links.append(t_item)
+                    
+                atag = tag(tag_id, tag_weight, tag_links)
+>>>>>>> d2b48d8d1d2aaf5471ba9882a49dbebe94125f7c
                     
 if __name__ == '__main__':
+    ilist = item_list()
+    ilist
     tl = tag_list()
     tl.load_from_csv("./tests/tags1.csv")
                 

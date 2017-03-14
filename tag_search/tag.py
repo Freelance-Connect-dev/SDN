@@ -11,7 +11,7 @@ class tag():
     
     def __init__(self, id, weight, items=set()):
         self.id = id
-        self.weight = weight
+        self.weight = float(weight)
         self.items = items
     
         

@@ -1,0 +1,29 @@
+<!-- account creation is done from visitor template (different nav bar) -->
+{% extends 'accounts/base_visitor.html' %}
+{% block title %}create_user{% endblock %}
+
+<!-- enter this chunk into base template -->
+{% block body %}
+
+<h1 class="well">Employment Posting</h1>
+
+<div class="container" style="margin-top: 60px;">
+  <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+    <!-- django automatically checks cross site forgery -->
+    {% csrf_token %}
+    <!-- fill this part in with premade form template -->
+    {% include 'accounts/form_template.html' %}
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+  </form>
+
+  <div class="panel-footer">
+      Already have an account? <a href="{% url 'accounts:login_user' %}">Click here</a> to log in.
+  </div>
+
+</div>
+
+{% endblock %}

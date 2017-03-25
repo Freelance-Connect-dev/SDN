@@ -15,6 +15,7 @@ We are using Django with python 3.5, along with html, css, js and bootstrap and 
 
 Tutorials:
 how to use django and html forms: https://docs.djangoproject.com/en/1.10/topics/forms/
+how to use built in user model: https://docs.djangoproject.com/en/1.10/ref/contrib/auth/
 
 after installing django, clone repo and navigate to sdnSite folder. within that folder run 'python manage.py runserver' use the default IP provided followed by port 8000 (i.e. http://127.0.0.1:8000 ).
 

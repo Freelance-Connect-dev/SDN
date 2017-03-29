@@ -1,0 +1,2 @@
+S101:Success
+T101:Skill name must be at least three characters long

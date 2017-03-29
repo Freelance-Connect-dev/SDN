@@ -1,4 +1,4 @@
-from database_io.ServerResult import ServerResult
+from database_io.utility.ServerResult import ServerResult
 from django.core.exceptions import ObjectDoesNotExist
 from django.core.exceptions import ValidationError
 from django.db import IntegrityError
@@ -9,8 +9,8 @@ class ServerMemberIO:
 	def __init__(self):
 		self.memberManager = Member.objects
 		
-	def createMember(self,email,name,phone,address,biography,business):
-		member = Member(email=email,name=name,phone=phone,address=address,biography=biography,business=business)
+	def createMember(self,email,name,phone,address,biography,business,hasWebsite,hasMobileApp,hasTwitter):
+		member = Member(email=email,name=name,phone=phone,address=address,biography=biography,business=business,has_Website=hasWebsite,has_Mobile_App=hasMobileApp,twitterAccount=hasTwitter)
 		'''
 		TODO
 		Check for email in database before creation
@@ -36,6 +36,9 @@ class ServerMemberIO:
 		print("\tAddress: ",model.address)
 		print("\tBiography: ",model.biography)
 		print("\tBusiness: ",model.business)
+		print("\tHas a Website: ",model.has_Website)
+		print("\tHas a Mobile App: ",model.has_Website)
+		print("\tTwitter Account: ",model.twitterAccount)
 		
 	def getMemberByEmail(self,mail):
 		serverResult = ServerResult()

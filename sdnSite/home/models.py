@@ -21,6 +21,9 @@ class Member(models.Model):
 	address = models.CharField(max_length=50)
 	biography = models.CharField(max_length=300)
 	business = models.BooleanField(default=False)
+	has_Website = models.BooleanField(default=False)
+	has_Mobile_App = models.BooleanField(default=False)
+	twitterAccount = models.CharField(max_length=50,default=None)
 	#Account links could become its own table to
 	#ensure that the data entered remains atomic.
 

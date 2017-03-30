@@ -14,8 +14,8 @@ class Member(models.Model):
 	#ensure that the data entered remains atomic.
 
 class Posting(models.Model):
-	job_id = models.IntegerField(default=0);
-	employer_id = models.ForeignKey(Member, default=0, on_delete=models.CASCADE)
+	job_id = models.IntegerField(primary_key=True);
+	employer_id = models.ForeignKey(Member, on_delete=models.CASCADE)
 	job_title = models.CharField(default="make an app", max_length=50)
 	description = models.CharField(default="a decent job", max_length=1000)
 	#status could be set up as a list of choices
@@ -24,19 +24,19 @@ class Posting(models.Model):
 	post_date = models.DateTimeField(default=timezone.now)
 
 class Image(models.Model):
-	image_id = models.CharField(max_length=30)
+	image_id = models.IntegerField(primary_key=True)
 	member_id = models.ForeignKey(Member,on_delete=models.CASCADE)
 	#image_reference = models.ImageField() #lets just fill this attribute with image links
 	title = models.CharField(max_length=30)
 
 class File(models.Model):
-	file_id = models.IntegerField();
+	file_id = models.IntegerField(primary_key=True);
 	business_id = models.ForeignKey(Member,on_delete=models.CASCADE)
 	title = models.CharField(max_length=30)
 	file_reference = models.CharField(max_length=100) #Assuming a web link
 
 class Tag(models.Model):
-	skill_id = models.CharField(max_length=30,primary_key=True)
+	skill_id = models.IntegerField(max_length=30,primary_key=True)
 	skill_name = models.CharField(max_length=30)
 	description = models.CharField(max_length=100)
 

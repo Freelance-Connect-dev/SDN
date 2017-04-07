@@ -7,7 +7,7 @@ from .models import Tag
 from .models import Contract
 from .models import Application
 
-admin.site.register(Posting)
+
 admin.site.register(Member)
 admin.site.register(Tag)
 admin.site.register(Contract)

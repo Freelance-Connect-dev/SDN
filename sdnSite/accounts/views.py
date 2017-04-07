@@ -1,6 +1,8 @@
 from django.contrib.auth import authenticate, login, logout
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect,HttpResponseRedirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from .models import UserProfile
 from django.http import JsonResponse
 from django.db.models import Q
 from .forms import UserForm
@@ -12,7 +14,8 @@ from django.core.urlresolvers import reverse_lazy
 
 # User account page
 class AccountView(generic.DetailView):
-    #find a way to load current logged in user (currently a non context page)
+    #TODO:find a way to load current logged in user (currently a non context page)
+    model = User
     template_name = 'accounts/account.html'
 
 # User creation
@@ -65,6 +68,40 @@ class UserFormView(View):
 
 # Create your method views here. -- these should be reconfigured to class views
 
+@login_required
+def edit_user(request, pk):
+    # querying the User object with pk from url
+    user = User.objects.get(pk=pk)
+
+    # prepopulate UserProfileForm with retrieved user values from above.
+    user_form = UserForm(instance=user)
+
+    # The sorcery begins from here, see explanation below
+    ProfileInlineFormset = inlineformset_factory(User, UserProfile, fields=('website', 'bio', 'phone', 'city', 'country', 'organization'))
+    formset = ProfileInlineFormset(instance=user)
+
+    if request.user.is_authenticated() and request.user.id == user.id:
+        if request.method == "POST":
+            user_form = UserForm(request.POST, request.FILES, instance=user)
+            formset = ProfileInlineFormset(request.POST, request.FILES, instance=user)
+
+            if user_form.is_valid():
+                created_user = user_form.save(commit=False)
+                formset = ProfileInlineFormset(request.POST, request.FILES, instance=created_user)
+
+                if formset.is_valid():
+                    created_user.save()
+                    formset.save()
+                    return HttpResponseRedirect('/accounts/profile/')
+
+        return render(request, "account/account_update.html", {
+            "noodle": pk,
+            "noodle_form": user_form,
+            "formset": formset,
+        })
+    else:
+        raise PermissionDenied
+
 # A dual use view, normal request gets login page, a POST request takes info and
 #                   logs user in
 def login_user(request):
@@ -75,7 +112,7 @@ def login_user(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return render(request, 'home/index.html')
+                return redirect('home/index.html')
             else:
                 return render(request, 'accounts/login.html', {'error_message': 'Your account has been disabled'})
         else:

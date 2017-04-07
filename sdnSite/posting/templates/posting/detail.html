@@ -1,0 +1,15 @@
+
+{% extends 'posting/base.html' %}
+
+{% block posting_active %}active{% endblock %}
+{% block body %}
+  <img src="#">
+  <h1>{{ posting.post_title }} </h1>
+  <h3>{{ posting.status }}</h3>
+  <h3>{{ posting.description }}</h3>
+
+  {% if error_message %}
+    <p>{{error_message}}</p>
+  {% endif%}
+
+{% endblock %}

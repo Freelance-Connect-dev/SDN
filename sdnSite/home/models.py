@@ -36,11 +36,7 @@ class File(models.Model):
 	file_reference = models.CharField(max_length=100) #Assuming a web link
 
 class Tag(models.Model):
-<<<<<<< HEAD
-	skill_id = models.IntegerField(primary_key=True)
-=======
 	skill_id = models.AutoField(primary_key=True)
->>>>>>> de6684258a87e55300fe55b90ceb4cf920741bbe
 	skill_name = models.CharField(max_length=30)
 	description = models.CharField(max_length=100)
 

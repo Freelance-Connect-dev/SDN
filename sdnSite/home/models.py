@@ -14,7 +14,7 @@ class Member(models.Model):
 	#ensure that the data entered remains atomic.
 
 class Posting(models.Model):
-	job_id = models.IntegerField(primary_key=True);
+	job_id = models.AutoField(primary_key=True);
 	employer_id = models.ForeignKey(Member, on_delete=models.CASCADE)
 	job_title = models.CharField(default="make an app", max_length=50)
 	description = models.CharField(default="a decent job", max_length=1000)

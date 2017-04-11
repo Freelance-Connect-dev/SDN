@@ -23,12 +23,7 @@
     <div class="row">
       {% if latest_posting_list %}
         {% for post in latest_posting_list %}
-          <div class="col-md-7">
-            <a href="#">
-                <img class="img-responsive" src="http://placehold.it/700x300" alt="">
-            </a>
-          </div>
-          <div class="col-md-5">
+          <div class="col-md-12">
               <h3>{{ post.post_title }}</h3>
               <h4>{{ post.post_date }}</h4>
               <p>{{ post.description }}</p>

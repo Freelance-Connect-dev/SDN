@@ -12,4 +12,10 @@
     <p>{{error_message}}</p>
   {% endif%}
 
+  <a href="{% url 'posting:application' posting.post_id %}">
+      <button type="button" class="btn btn-success">
+          <span class="glyphicon glyphicon-plus"></span>&nbsp; Apply
+      </button>
+  </a>
+
 {% endblock %}

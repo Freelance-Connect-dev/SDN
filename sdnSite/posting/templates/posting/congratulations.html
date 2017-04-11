@@ -4,13 +4,16 @@
 {% extends 'home/base.html' %}
 
 {% block title %}Congratulations!{% endblock %}
-{% block index_active %}active{% endblock %}
 
 <!-- start block body, this is what is inserted into base_visitor.html -->
 {% block body %}
     <!-- Page Content -->
-	
+
     <h1> Welcome to Freelance Connect!  Let's work together!</h1>
- <button type="button">Continue</button>
- 
+		<a href="{% url 'home:index' %}">
+				<button type="button" class="btn btn-success">
+						<span class="glyphicon glyphicon-plus"></span>&nbsp; Start Work
+				</button>
+		</a>
+
 {% endblock %}

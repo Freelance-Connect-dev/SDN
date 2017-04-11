@@ -4,7 +4,7 @@ from django.core.urlresolvers import reverse
 
 # Create your models here.
 class posting(models.Model):
-    post_id = models.IntegerField(primary_key=True)
+    post_id = models.AutoField(primary_key=True)
 	#employer_id = models.ForeignKey(Member, on_delete=models.CASCADE)
 
     post_title = models.CharField(default="make an app", max_length=50)

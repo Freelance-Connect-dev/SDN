@@ -3,9 +3,12 @@
 
 {% block posting_active %}active{% endblock %}
 {% block body %}
-  <img src="#">
   <h1>{{ posting.post_title }} </h1>
-  <h3>{{ posting.status }}</h3>
+  {% if posting.status == 0 %}
+  <h3>Position is open</h3>
+  {% else %}
+  <h3>Sorry, this position has been closed</h3>
+  {% endif %}
   <h3>{{ posting.description }}</h3>
 
   {% if error_message %}

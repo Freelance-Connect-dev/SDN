@@ -11,4 +11,4 @@ class PostingForm(forms.ModelForm):
 
     class Meta:
         model = posting
-        fields = ['post_id','post_title','description','finish_date']
+        fields = ['post_id','post_title','description']

@@ -9,7 +9,7 @@ from .models import posting
 class PostingCreate(generic.CreateView):
     model = posting
     #put relevant fields to be displayed here
-    fields = ['post_id','post_title','description','finish_date']
+    fields = ['post_id','post_title','description', 'finish_date']
 
 class DetailView(DetailView):
     model = posting

@@ -1,0 +1,36 @@
+{% extends 'posting/base.html' %}
+
+{% block title %}Agreement{% endblock %}
+<!-- Tell django that user account is being registered -->
+{% block register_active %}active{% endblock %}
+
+<!-- start block body, this is what is inserted into base_visitor.html -->
+{% block body %}
+<div class="container-fluid">
+
+
+
+
+      <h2>Contract Agreement:</h2>
+      <center>
+      <h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In laoreet consectetur nulla, suscipit dapibus mi dictum a. In tristique felis at mi posuere auctor. Curabitur eleifend ex id placerat pharetra. Donec eget nulla convallis dui dignissim posuere. Vivamus ultrices consequat lacus. Morbi porttitor diam in sapien fringilla, ut mattis justo dictum. Vivamus vel efficitur velit. Etiam eget cursus dui. Suspendisse non venenatis nibh.
+
+Nullam malesuada libero at mauris egestas, vitae tempor ligula gravida. Vestibulum vitae viverra est. Phasellus venenatis nisl sed tortor elementum cursus. Quisque eleifend elementum massa non pulvinar. Duis ut gravida metus, ac faucibus ligula. Nam interdum, tortor nec maximus condimentum, urna arcu ultrices purus, id egestas sapien libero in eros. Sed porta sem in pulvinar cursus. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce fringilla sollicitudin nulla. Suspendisse quis rhoncus turpis. Fusce varius cursus dolor lacinia congue. Phasellus quam sapien, lobortis feugiat purus nec, varius semper arcu. Nullam orci ex, mattis facilisis diam eget, pellentesque lobortis libero. Suspendisse sapien neque, tempus eu mauris vitae, posuere iaculis tortor. Cras venenatis neque urna, nec suscipit nisi dapibus ac. Vestibulum ac ultricies ex, pretium feugiat dolor.
+
+Nulla a fringilla nulla. Nam egestas risus nec vestibulum porta. Pellentesque malesuada, urna volutpat blandit iaculis, augue nulla dictum arcu, iaculis tincidunt lectus magna ut nunc. Morbi tempor scelerisque est, quis blandit turpis. Quisque interdum magna ut nibh maximus viverra. Nunc et massa viverra, feugiat massa sit amet, faucibus metus. Phasellus viverra at metus ac dapibus. Mauris eu hendrerit turpis, a finibus est. Nam at magna ut ante consectetur fringilla nec ac orci. Nulla blandit quam at tortor fringilla suscipit. Integer convallis consequat finibus. Integer fringilla maximus lorem, ut egestas libero faucibus eu.
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean pulvinar tortor at felis suscipit viverra. Quisque commodo sit amet neque eu mattis. Nulla facilisi. Aenean pulvinar sagittis arcu, id ullamcorper est placerat ac. Suspendisse tincidunt mauris id consectetur tincidunt. In semper id lacus lobortis tincidunt. Vivamus volutpat ac odio a ultricies. Pellentesque nisl augue, varius non velit id, viverra ornare tortor. Pellentesque eget sem vitae sem laoreet sodales. Integer rhoncus porttitor lacinia. In sed elit lorem. Praesent porttitor metus eu lectus posuere, et viverra erat faucibus.
+
+Proin ipsum nulla, mattis viverra cursus a, fringilla condimentum nisi. Vivamus sit amet dui nec tortor fringilla dignissim. Sed sed venenatis leo, a bibendum diam. Donec in egestas diam. Maecenas ullamcorper metus sit amet neque facilisis, in rhoncus risus pharetra. Fusce congue mattis hendrerit. Proin euismod risus a mi viverra dapibus. Duis sem nunc, iaculis id tincidunt a, auctor vitae risus. Phasellus feugiat nulla ac suscipit accumsan. Vestibulum consectetur, lorem in congue pellentesque, justo dolor maximus dolor, lobortis viverra ante leo eu lacus. Vestibulum quis scelerisque dui. Pellentesque eget orci ligula. Donec malesuada purus ac ipsum fermentum, gravida consectetur neque tempus. Proin luctus sem justo, quis tempus augue aliquam eget. Nam luctus, purus eu porttitor blandit, arcu lorem rutrum turpis, sed accumsan quam erat sit amet tortor. Ut in convallis tortor.</h3>
+<a href="{% url 'posting:congrats' %}">
+    <button type="button" class="btn btn-success">
+        <span class="glyphicon glyphicon-plus"></span>&nbsp; I Agree
+    </button>
+</a>
+</center>
+
+
+
+
+</div>
+{% endblock %}

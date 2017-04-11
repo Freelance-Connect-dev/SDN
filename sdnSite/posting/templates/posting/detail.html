@@ -3,16 +3,33 @@
 
 {% block posting_active %}active{% endblock %}
 {% block body %}
+<<<<<<< HEAD
   <h1>{{ posting.post_title }} </h1>
   {% if posting.status == 0 %}
   <h3>Position is open</h3>
   {% else %}
   <h3>Sorry, this position has been closed</h3>
+=======
+<div class="container" style="margin-top: 60px;">
+  <center>
+  <h1>{{ posting.post_title }} </h1>
+  {% if posting.status == 0 %}
+    <h3>This job is available</h3>
+>>>>>>> origin/feature
   {% endif %}
   <h3>{{ posting.description }}</h3>
+  <a href="{% url 'posting:application' %}">
+      <button type="button" class="btn btn-success">
+          <span class="glyphicon glyphicon-plus"></span>&nbsp; Apply
+      </button>
+  </a>
+</center>
+</div>
 
-  {% if error_message %}
-    <p>{{error_message}}</p>
-  {% endif%}
+{% if error_message %}
+  <p>{{error_message}}</p>
+{% endif%}
+
+
 
 {% endblock %}

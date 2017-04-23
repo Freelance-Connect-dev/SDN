@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
+from .models import File
 
 ###############################################################################
 # Forms in django are meant for building, displaying, and accepting info on models
@@ -14,3 +15,9 @@ class UserForm(forms.ModelForm):
     class Meta: # data to be grabbed in forms (relevant fields from models)
         model = User
         fields = ['username','email','password']
+		
+class FileUploadForm(forms.ModelForm):
+
+	class Meta:
+		model = File
+		fields = ['title','file']

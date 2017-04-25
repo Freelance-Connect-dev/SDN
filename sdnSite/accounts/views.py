@@ -61,6 +61,12 @@ class UserFormView(View):
                     # send to home
                     return redirect('home:index')
 
+                else:
+                    print "user is not active!!!!!!!!!!!!!!!!!!!"
+
+            else:
+                print "user is None!!!!!!!!!!!!!!!!!!!!"
+
         # if this is where user ended up, their form wasnt valid.
         # so send them back with a message about what was wrong.
         return render(request, self.template_name, {'form':form})
@@ -72,7 +78,7 @@ class UploadFile(generic.CreateView):
 	model = File
 	#put relevant fields to be displayed here
 	fields = ['title','file']
-	
+
 @login_required
 def edit_user(request, pk):
     # querying the User object with pk from url

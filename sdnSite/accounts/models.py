@@ -13,14 +13,16 @@ class UserProfile(models.Model):
     city = models.CharField(max_length=100, default='', blank=True)
     country = models.CharField(max_length=100, default='', blank=True)
     organization = models.CharField(max_length=100, default='', blank=True)
-	
-    def create_profile(sender, **kwargs):
-        user = kwargs["instance"]
-        if kwargs["created"]:
-            user_profile = UserProfile(user=user)
-            user_profile.save()
-    post_save.connect(create_profile, sender=User)
-	
+
+    @reciever(post_save,sender=User)
+    def create_user_profile(sender, instance, created, **kwargs):
+        if created:
+            UserProfile.objects.create(user=instance)
+
+    @reciever(post_save,sender=User)
+    def save_user_profile(sender,instance,**kwargs):
+            instance.userprofile.save()
+
 class File(models.Model):
 	file_id = models.AutoField(primary_key=True);
 	#business_id = models.ForeignKey(Member,on_delete=models.CASCADE)

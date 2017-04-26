@@ -2,10 +2,10 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import UserProfile
+from .models import UserProfile, File
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import UserForm
+from .forms import UserForm, FileUploadForm
 from django.views import generic
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -61,12 +61,23 @@ class UserFormView(View):
                     # send to home
                     return redirect('home:index')
 
+                else:
+                    print "user is not active!!!!!!!!!!!!!!!!!!!"
+
+            else:
+                print "user is None!!!!!!!!!!!!!!!!!!!!"
+
         # if this is where user ended up, their form wasnt valid.
         # so send them back with a message about what was wrong.
         return render(request, self.template_name, {'form':form})
 
 
 # Create your method views here. -- these should be reconfigured to class views
+
+class UploadFile(generic.CreateView):
+	model = File
+	#put relevant fields to be displayed here
+	fields = ['title','file']
 
 @login_required
 def edit_user(request, pk):

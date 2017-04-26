@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
-
+#from accounts import UserProfile
+#from posting import posting
 # Create your models here.
 
 class Member(models.Model):
@@ -40,12 +41,15 @@ class Tag(models.Model):
 	skill_name = models.CharField(max_length=30)
 	description = models.CharField(max_length=100)
 
+	def __str__(self):
+		return (self.skill_name)
+
 class Job_Tag(models.Model):
-	job_id = models.ForeignKey(Posting,on_delete=models.CASCADE)
+	job_id = models.ForeignKey('posting.posting',on_delete=models.CASCADE)
 	skill_id = models.ForeignKey(Tag,on_delete=models.CASCADE)
 
 class Member_Tag(models.Model):
-	member_id = models.ForeignKey(Member,on_delete=models.CASCADE)
+	member_id = models.ForeignKey('accounts.UserProfile',on_delete=models.CASCADE)
 	skill_id = models.ForeignKey(Tag,on_delete=models.CASCADE)
 
 class Review(models.Model):

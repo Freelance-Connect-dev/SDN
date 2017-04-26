@@ -4,18 +4,26 @@ from django.views import generic
 from django.views.generic import View
 from django.views.generic import CreateView, UpdateView, DeleteView, DetailView
 from .models import posting
-
+from django.contrib.admin.widgets import AdminDateWidget
 # Create Posting page
-class PostingCreate(generic.CreateView):
-    model = posting
-    #put relevant fields to be displayed here
-    fields = ['post_id','post_title','description', 'finish_date']
+# class PostingCreate(generic.CreateView):
+#     model = posting
+#     #put relevant fields to be displayed here
+#     fields = ['post_id','post_title', 'company_name', 'description', 'total_pay', 'finish_date', 'tags']
+#     class Meta:
+#         widgets = {
+#             'finish_date': AdminDateWidget()
+#         }
+
+
 
 class DetailView(DetailView):
     model = posting
     template_name = 'posting/detail.html'
 
-
+def new_post(request):
+    form = PostingForm()
+    return render(request, 'posting/posting_form.html', {'form':form})
 
 def application(request):
     return render(request, 'posting/application.html')

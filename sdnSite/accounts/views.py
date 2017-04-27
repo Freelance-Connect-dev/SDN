@@ -62,10 +62,10 @@ class UserFormView(View):
                     return redirect('home:index')
 
                 else:
-                    print "user is not active!!!!!!!!!!!!!!!!!!!"
+                    print("user is not active!!!!!!!!!!!!!!!!!!!")
 
             else:
-                print "user is None!!!!!!!!!!!!!!!!!!!!"
+                print("user is None!!!!!!!!!!!!!!!!!!!!")
 
         # if this is where user ended up, their form wasnt valid.
         # so send them back with a message about what was wrong.

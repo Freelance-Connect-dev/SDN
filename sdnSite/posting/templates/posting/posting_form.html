@@ -13,18 +13,19 @@
 
     <div class="row">
 
-      <div class="col-sm-12 col-md-7">
+      <div class="col-sm-12 col-md-10 col-md-offset-1">
         <div class="panel panel-default">
           <div class="panel-body">
 
-            <form class="form-horizontal" action="" method="post">
+            <form class="form-horizontal center" action="" method="post">
               <!-- Cross site request forgery protection, handled by Django -->
+              <h1>Create Job</h1>
               {% csrf_token %}
               <!-- insert relevant form for registering user (based on forms.py) -->
               {% include 'posting/form_template.html' %}
               <div class='form-group'>
-                <div class='col-sm-offset-2 col-sm-10'>
-                  <button type="submit" class="btn btn-success">Submit</button>
+                <div class='col-offset-6 col-6'>
+                  <button type="submit" class="btn btn-success btn-lg">Submit</button>
                 </div>
               </div>
             </form>

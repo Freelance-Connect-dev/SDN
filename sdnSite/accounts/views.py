@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile, File
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import UserForm, FileUploadForm
+from .forms import UserForm, UploadFileForm
 from django.views import generic
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -62,10 +62,10 @@ class UserFormView(View):
                     return redirect('home:index')
 
                 else:
-                    print "user is not active!!!!!!!!!!!!!!!!!!!"
+                    print ("user is not active!")
 
             else:
-                print "user is None!!!!!!!!!!!!!!!!!!!!"
+                print ("user is None!")
 
         # if this is where user ended up, their form wasnt valid.
         # so send them back with a message about what was wrong.

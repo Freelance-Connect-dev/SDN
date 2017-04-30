@@ -21,6 +21,13 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['website','bio','phone','city','country','organization']
 
+class UserLoginForm(forms.Form):
+    username = forms.CharField()
+    password = forms.CharField(widget=forms.PasswordInput)
+
+
+
+#this needs to be changed..
 class UploadFileForm(forms.Form):
     class Meta:
         model = File

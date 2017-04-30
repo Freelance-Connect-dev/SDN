@@ -1,11 +1,11 @@
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login, logout, get_user_model
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from .models import UserProfile, File
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import UserForm, UploadFileForm
+from .forms import UserForm, UploadFileForm, UserProfileForm, UserLoginForm
 from django.views import generic
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -14,9 +14,13 @@ from django.core.urlresolvers import reverse_lazy
 
 # User account page
 class AccountView(generic.DetailView):
-    #TODO:find a way to load current logged in user (currently a non context page)
-    model = User
+
+    form_class = UserProfile
     template_name = 'accounts/account.html'
+
+    #user profile is loaded in account.html without context
+    def get(self, request):
+        return render(request, self.template_name)
 
 # User creation
 class UserFormView(View):
@@ -79,6 +83,47 @@ class UploadFile(generic.CreateView):
 	#put relevant fields to be displayed here
 	fields = ['title','file']
 
+class LoginView(View):
+
+    form_class = UserLoginForm
+    template_name = 'accounts/login.html'
+
+    def get(self, request):
+        form = self.form_class(None)
+        return render(request, self.template_name, {'form' : form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+
+        # if form is complete and valid
+        if form.is_valid():
+
+            # take in cleaned data (protected)
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password']
+
+            # check that user doesnt already exist and name and pass are valid
+            user = authenticate(username=username, password=password)
+
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    return redirect('home:index')
+                else:
+                    return redirect('accounts/login.html')
+            else:
+                return redirect('accounts/login.html')
+
+        return render(request, self.template_name, {'form':form})
+
+class LogoutView(View):
+
+    def get(self,request):
+        logout(request)
+        return redirect('home:index')
+
+
+
 @login_required
 def edit_user(request, pk):
     # querying the User object with pk from url
@@ -112,29 +157,3 @@ def edit_user(request, pk):
         })
     else:
         raise PermissionDenied
-
-# A dual use view, normal request gets login page, a POST request takes info and
-#                   logs user in
-def login_user(request):
-    if request.method == "POST":
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(username=username, password=password)
-        if user is not None:
-            if user.is_active:
-                login(request, user)
-                return redirect('home/index.html')
-            else:
-                return render(request, 'accounts/login.html', {'error_message': 'Your account has been disabled'})
-        else:
-            return render(request, 'accounts/login.html', {'error_message': 'Invalid login'})
-    return render(request, 'accounts/login.html')
-
-# This is a route to the login page, logging the user out upon arrival
-def logout_user(request):
-    logout(request)
-    form = UserForm(request.POST or None)
-    context = {
-        "form" : form,
-    }
-    return render(request, 'accounts/login.html', context)

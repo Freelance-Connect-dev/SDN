@@ -19,9 +19,7 @@ class UserProfile(models.Model):
         if created:
             UserProfile.objects.create(user=instance)
 
-    @receiver(post_save,sender=User)
-    def save_user_profile(sender,instance,**kwargs):
-            instance.userprofile.save()
+    
 
 class File(models.Model):
 	file_id = models.AutoField(primary_key=True);

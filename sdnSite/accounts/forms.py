@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from .models import UserProfile, File
+from .models import UserProfile, ProfilePicture
 
 ###############################################################################
 # Forms in django are meant for building, displaying, and accepting info on models
@@ -21,7 +21,7 @@ class UserProfileForm(forms.ModelForm):
         model = UserProfile
         fields = ['website','bio','phone','city','country','organization']
 
-class UploadFileForm(forms.Form):
+class UploadFileForm(forms.ModelForm):
     class Meta:
-        model = File
-        fields = ['file']
+        model = ProfilePicture
+        fields = ['picture']

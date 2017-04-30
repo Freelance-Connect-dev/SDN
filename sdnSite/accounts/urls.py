@@ -16,5 +16,6 @@ urlpatterns = [
     # SDN.com/accounts/logout_user
     url(r'^logout_user/$',views.logout_user,name='logout_user'),
 	# SDN.com/accounts/logout_user
-    url(r'^upload_file/$',views.UploadFile.as_view(),name='upload_file'),
+    #url(r'^upload_file/$',views.UploadFile.as_view(),name='upload_file'),
+	url(r'^upload_file/$',views.uploadfile,name='upload_file'),
 ]

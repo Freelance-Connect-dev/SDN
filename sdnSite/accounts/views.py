@@ -2,7 +2,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import UserProfile, File
+from .models import UserProfile, ProfilePicture
 from django.http import JsonResponse
 from django.db.models import Q
 from .forms import UserForm, UploadFileForm
@@ -74,10 +74,22 @@ class UserFormView(View):
 
 # Create your method views here. -- these should be reconfigured to class views
 
-class UploadFile(generic.CreateView):
-	model = File
+#class UploadFile(generic.CreateView):
+	#model = ProfilePicture
 	#put relevant fields to be displayed here
-	fields = ['title','file']
+	#fields = ['picture']
+	
+def uploadfile(request):
+	img = UploadFileForm()
+	if request.method=="POST":
+		img = UploadFileForm(request.POST, request.FILES)
+		if img.is_valid():
+			img.save()
+			return redirect('home:index')
+		else:
+			img = UploadFileForm()
+	images=ProfilePicture.objects.all()
+	return render(request,'accounts/profilepicture_form.html',{'form':img,'images':images})
 
 @login_required
 def edit_user(request, pk):

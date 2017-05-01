@@ -1,11 +1,11 @@
-from django.contrib.auth import authenticate, login, logout, get_user_model
+from django.contrib.auth import authenticate, login, logout
 from django.shortcuts import render, redirect,HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from .models import UserProfile, ProfilePicture
+from .models import UserProfile, File
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import UserForm, UploadFileForm, UserProfileForm, UserLoginForm
+from .forms import UserForm, FileUploadForm
 from django.views import generic
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -14,8 +14,8 @@ from django.core.urlresolvers import reverse_lazy
 
 # User account page
 class AccountView(generic.DetailView):
-
-    form_class = UserProfile
+    #TODO:find a way to load current logged in user (currently a non context page)
+    model = User
     template_name = 'accounts/account.html'
 
     #user profile is loaded in account.html without context
@@ -24,6 +24,7 @@ class AccountView(generic.DetailView):
         print (profilename)
         profile = UserProfile.objects.get(user=profilename)
         return render(request, self.template_name, {'profile' : profile})
+
 
 
 
@@ -67,6 +68,7 @@ class UserFormView(View):
                     # send to home
                     return redirect('home:index')
 
+
         # if this is where user ended up, their form wasnt valid.
         # so send them back with a message about what was wrong.
         return render(request, self.template_name, {'form':form})
@@ -74,10 +76,11 @@ class UserFormView(View):
 
 # Create your method views here. -- these should be reconfigured to class views
 
-#class UploadFile(generic.CreateView):
-	#model = ProfilePicture
+class UploadFile(generic.CreateView):
+	model = File
 	#put relevant fields to be displayed here
 	#fields = ['picture']
+    fields = ['title','file']
 
 def uploadfile(request):
 	img = UploadFileForm()
@@ -132,6 +135,7 @@ class LogoutView(View):
 
 
 
+
 @login_required
 def edit_user(request, pk):
     # querying the User object with pk from url
@@ -165,3 +169,29 @@ def edit_user(request, pk):
         })
     else:
         raise PermissionDenied
+
+# A dual use view, normal request gets login page, a POST request takes info and
+#                   logs user in
+def login_user(request):
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return redirect('home/index.html')
+            else:
+                return render(request, 'accounts/login.html', {'error_message': 'Your account has been disabled'})
+        else:
+            return render(request, 'accounts/login.html', {'error_message': 'Invalid login'})
+    return render(request, 'accounts/login.html')
+
+# This is a route to the login page, logging the user out upon arrival
+def logout_user(request):
+    logout(request)
+    form = UserForm(request.POST or None)
+    context = {
+        "form" : form,
+    }
+    return render(request, 'accounts/login.html', context)

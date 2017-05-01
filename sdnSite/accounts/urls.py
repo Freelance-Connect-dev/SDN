@@ -1,5 +1,6 @@
 from django.conf.urls import url
 from . import views
+from django.contrib.auth import views as auth_views
 
 ###############################################################################
 #   urlpatterns are the start of the chain fired off by django,
@@ -12,9 +13,10 @@ urlpatterns = [
     # SDN.com/accounts/register/
     url(r'^register/$',views.UserFormView.as_view(),name='register'),
     # SDN.com/accounts/login_user/
-    url(r'^login_user/$',views.login_user,name='login_user'),
+    url(r'^login_user/$',views.LoginView.as_view(),name='login_user'),
     # SDN.com/accounts/logout_user
-    url(r'^logout_user/$',views.logout_user,name='logout_user'),
+    url(r'^logout_user/$',views.LogoutView.as_view(),name='logout_user'),
 	# SDN.com/accounts/logout_user
-    url(r'^upload_file/$',views.UploadFile.as_view(),name='upload_file'),
+    #url(r'^upload_file/$',views.UploadFile.as_view(),name='upload_file'),
+	url(r'^upload_file/$',views.uploadfile,name='upload_file'),
 ]

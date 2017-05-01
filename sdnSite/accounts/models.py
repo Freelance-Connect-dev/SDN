@@ -19,13 +19,7 @@ class UserProfile(models.Model):
         if created:
             UserProfile.objects.create(user=instance)
 
-    @receiver(post_save,sender=User)
-    def save_user_profile(sender,instance,**kwargs):
-            instance.userprofile.save()
+    
 
-class File(models.Model):
-	file_id = models.AutoField(primary_key=True);
-	#business_id = models.ForeignKey(Member,on_delete=models.CASCADE)
-	title = models.CharField(max_length=30)
-	#file_reference = models.CharField(max_length=100) #Assuming a web link
-	file = models.FileField(null=True)
+class ProfilePicture(models.Model):
+	picture = models.ImageField(upload_to="profile_pictures")

@@ -19,7 +19,7 @@ class UserProfile(models.Model):
         if created:
             UserProfile.objects.create(user=instance)
 
-    
+
 
 class ProfilePicture(models.Model):
 	picture = models.ImageField(upload_to="profile_pictures")

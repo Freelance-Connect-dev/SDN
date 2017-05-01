@@ -19,8 +19,13 @@ class AccountView(generic.DetailView):
     template_name = 'accounts/account.html'
 
     #user profile is loaded in account.html without context
-    def get(self, request):
-        return render(request, self.template_name)
+    def get(self, request, profilename):
+        #this is not working, need new field to query on
+        print (profilename)
+        profile = UserProfile.objects.get(user=profilename)
+        return render(request, self.template_name, {'profile' : profile})
+
+
 
 # User creation
 class UserFormView(View):
@@ -48,12 +53,9 @@ class UserFormView(View):
             # set the pass word safely
             user.set_password(password)
 
-            # commit changes to the database, not sure why this is done before
-            # authenticating
+            # commit changes to the database
             user.save()
 
-            # check that user doesnt already exist and name and pass are valid
-            user = authenticate(username=username, password=password)
 
             # for security, check that user is still valid
             if user is not None:
@@ -64,12 +66,6 @@ class UserFormView(View):
                     login(request, user)
                     # send to home
                     return redirect('home:index')
-
-                else:
-                    print ("user is not active!")
-
-            else:
-                print ("user is None!")
 
         # if this is where user ended up, their form wasnt valid.
         # so send them back with a message about what was wrong.
@@ -82,7 +78,7 @@ class UserFormView(View):
 	#model = ProfilePicture
 	#put relevant fields to be displayed here
 	#fields = ['picture']
-	
+
 def uploadfile(request):
 	img = UploadFileForm()
 	if request.method=="POST":

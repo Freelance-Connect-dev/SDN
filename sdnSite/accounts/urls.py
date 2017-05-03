@@ -9,7 +9,7 @@ from django.contrib.auth import views as auth_views
 ###############################################################################
 urlpatterns = [
     # SDN.com/accounts/
-    url(r'^(?P<profilename>[a-zA_Z]+)/$', views.AccountView.as_view(), name="account_page"),
+    url(r'^b/(?P<profilename>[a-zA_Z]+)/$', views.AccountView.as_view(), name="account_page"),
     # SDN.com/accounts/register/
     url(r'^register/$',views.UserFormView.as_view(),name='register'),
     # SDN.com/accounts/login_user/

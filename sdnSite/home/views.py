@@ -3,7 +3,6 @@ from django.template import loader
 from django.http import Http404
 from django.views import generic
 from django.views.generic import ListView, TemplateView
-
 from django.db import models
 from posting.models import posting
 

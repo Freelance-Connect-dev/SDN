@@ -22,7 +22,14 @@ class DetailView(DetailView):
     template_name = 'posting/detail.html'
 
 def new_post(request):
-    form = PostingForm()
+    if request.method == "POST":
+        form = PostingForm(request.POST)
+    else:
+        form = PostingForm()
+    if form.is_valid():
+        posting = form.save(commit=False)
+        posting.save()
+
     return render(request, 'posting/posting_form.html', {'form':form})
 
 def application(request):

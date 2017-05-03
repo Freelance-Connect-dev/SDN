@@ -11,6 +11,7 @@ class posting(models.Model):
     company_name = models.CharField(default="", max_length=30)
     description = models.CharField(default="", max_length=1000)
     total_pay = models.DecimalField(default=100, max_digits=50, decimal_places=2)
+    #percent_up_front = models.DecimalField(default=25.00, max_digits=3, decimal_places=2)
     #status could be set up as a list of choices
     status = models.IntegerField(default=0)
     finish_date = models.DateField(default=timezone.now)

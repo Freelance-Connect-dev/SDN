@@ -22,6 +22,7 @@ class PostingForm(forms.ModelForm):
             'post_title': forms.Textarea(attrs={'cols': 50, 'rows': 1}),
             'company_name': forms.Textarea(attrs={'cols': 50, 'rows': 1}),
             'total_pay': forms.NumberInput(attrs={'step': 100, 'style': 'width:50ch'}),
+            #'percent_up_front': forms.NumberInput(attrs={'step': 5, 'style': 'width:50ch'}),
             'tags': forms.SelectMultiple(attrs={'style': 'width:50ch'})
             #'tags': CheckboxSelectMultiple()
         }

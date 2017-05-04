@@ -80,7 +80,7 @@ def uploadResume(request):
 		resumeForm = UploadResumeForm(request.POST, request.FILES,instance=profile)
 		if resumeForm.is_valid():
 			resumeForm.save()
-			return redirect('home:index')
+			return redirect('accounts:account_page')
 		else:
 			resumeForm = UploadResumeForm()
 	return render(request,'accounts/profilepicture_form.html',{'form':resumeForm})
@@ -93,22 +93,10 @@ def uploadPicture(request):
 		pictureForm = UploadPictureForm(request.POST, request.FILES,instance=profile)
 		if pictureForm.is_valid():
 			pictureForm.save()
-			return redirect('home:index')
+			return redirect('accounts:account_page')
 		else:
 			pictureForm = UploadPictureForm()
 	return render(request,'accounts/profilepicture_form.html',{'form':pictureForm})
-	
-def uploadfile(request):
-	img = UploadFileForm()
-	if request.method=="POST":
-		img = UploadFileForm(request.POST, request.FILES)
-		if img.is_valid():
-			img.save()
-			return redirect('home:index')
-		else:
-			img = UploadFileForm()
-	images=ProfilePicture.objects.all()
-	return render(request,'accounts/profilepicture_form.html',{'form':img,'images':images})
 
 class LoginView(View):
 

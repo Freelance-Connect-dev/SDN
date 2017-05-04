@@ -8,13 +8,51 @@
         <center>
         <img src="{{ profile.picture.url }}" name="aboutme" width="140" height="140" class="img-circle">
         </a>
+        <p><a href="{% url 'accounts:upload_picture' %}">Change Picture</a><p>
         <h2>{{ user.username }}</h2>
         <button type="submit" class="btn btn-success">Edit Account</button>
 
 		    </center>
     </div>
     <div class="span3 well">
-      {{ profile.user }}
+      <li>Resume: <a href="{{ profile.resume.url }}">{{ profile.resume.name }}</a> Change: <a href="{% url 'accounts:upload_resume' %}">Upload</a></li>
+ 		</li>
+ 		<li>Website: {% if profile.website %}
+ 			{{ profile.website }}
+ 		{% else %}
+ 			None
+ 		{% endif %}
+ 		</li>
+ 		<li>Biography:  {% if profile.bio %}
+ 			{{ profile.bio }}
+ 		{% else %}
+ 			None
+ 		{% endif %}
+ 		</li>
+ 		<li>Phone:  {% if profile.phone %}
+ 			{{ profile.phone }}
+ 		{% else %}
+ 			None
+ 		{% endif %}
+ 		</li>
+ 		<li>City:  {% if profile.city %}
+ 			{{ profile.city }}
+ 		{% else %}
+ 			None
+		{% endif %}
+  </li>
+ 		<li>Country:  {% if profile.country %}
+ 			{{ profile.country }}
+ 		{% else %}
+ 			None
+ 		{% endif %}
+ 		</li>
+ 		<li>Organization:  {% if profile.organization %}
+ 			{{ profile.organization }}
+ 		{% else %}
+ 			None
+ 		{% endif %}
+ 		</li>
     </div>
 
 {% endblock %}

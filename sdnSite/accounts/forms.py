@@ -32,12 +32,12 @@ class UploadResumeForm(forms.ModelForm):
 		model = UserProfile
 		fields = ['resume']
 		exclude = ['user','website','bio','phone','city','country','organization','picture']
-		
+
 class UploadPictureForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = ['picture']
-		exclude = ['user','website','bio','phone','city','country','organization','resume']
+	exclude = ['user','website','bio','phone','city','country','organization','resume']
 
 class UploadFileForm(forms.ModelForm):
 

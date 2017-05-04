@@ -11,6 +11,7 @@ class UserProfile(models.Model):
     bio = models.TextField(default='', blank=True)
     phone = models.CharField(max_length=20, blank=True, default='')
     city = models.CharField(max_length=100, default='', blank=True)
+    state = models.CharField(max_length=100, default='', blank=True)
     country = models.CharField(max_length=100, default='', blank=True)
     organization = models.CharField(max_length=100, default='', blank=True)
     resume = models.FileField(upload_to="resumes",default="resumes/hello.txt")

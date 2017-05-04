@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile, ProfilePicture
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import UserForm, UploadFileForm, UserLoginForm, UploadResumeForm
+from .forms import UserForm, UploadFileForm, UserLoginForm, UploadResumeForm, UploadPictureForm
 from django.views import generic
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -85,6 +85,19 @@ def uploadResume(request):
 			resumeForm = UploadResumeForm()
 	return render(request,'accounts/profilepicture_form.html',{'form':resumeForm})
 
+def uploadPicture(request):
+	pictureForm = UploadPictureForm()
+	if request.method=="POST":
+		profilename = request.user.username
+		profile = UserProfile.objects.get(user__username=profilename)
+		pictureForm = UploadPictureForm(request.POST, request.FILES,instance=profile)
+		if pictureForm.is_valid():
+			pictureForm.save()
+			return redirect('home:index')
+		else:
+			pictureForm = UploadPictureForm()
+	return render(request,'accounts/profilepicture_form.html',{'form':pictureForm})
+	
 def uploadfile(request):
 	img = UploadFileForm()
 	if request.method=="POST":

@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^login_user/$',views.LoginView.as_view(),name='login_user'),
     # SDN.com/accounts/logout_user
     url(r'^logout_user/$',views.LogoutView.as_view(),name='logout_user'),
-	url(r'^upload_file/$',views.uploadfile,name='upload_file'),
+	url(r'^upload_picture/$',views.uploadPicture,name='upload_picture'),
 	url(r'^upload_resume/$',views.uploadResume,name='upload_resume'),
 	# SDN.com/accounts/ ^(?P<profilename>)
     url(r'^$', views.AccountView.as_view(), name="account_page"),

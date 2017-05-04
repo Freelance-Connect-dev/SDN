@@ -20,7 +20,7 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['website','bio','phone','city','country','organization']
-        exclude = ['resume']
+        exclude = ['resume','picture']
 
 
 class UserLoginForm(forms.Form):
@@ -31,7 +31,13 @@ class UploadResumeForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
 		fields = ['resume']
-		exclude = ['user','website','bio','phone','city','country','organization']
+		exclude = ['user','website','bio','phone','city','country','organization','picture']
+		
+class UploadPictureForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = ['picture']
+		exclude = ['user','website','bio','phone','city','country','organization','resume']
 
 class UploadFileForm(forms.ModelForm):
 

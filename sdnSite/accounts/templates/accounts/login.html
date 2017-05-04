@@ -2,13 +2,25 @@
 {% block title %}Login{% endblock %}
 
 {% block body %}
+
     <div class="container" style="margin-top: 40px;">
-      <form class="form-signin" action="" method="post">
-        {% csrf_token %}
-        {% include 'accounts/form_template.html' %}
-        
-        <button class="btn btn-lg btn-primary btn-block" action="" type="submit">Sign in</button>
-      </form>
+      <div class="col-lg-12">
+    <div class="row">
+        <div class="col-xs-4">
+
+          <form class="form-signin" action="" method="post">
+
+            {% csrf_token %}
+            {% include 'accounts/form_template.html' %}
+            <br>
+            <button class="btn btn-sm btn-primary btn-block " style="text-align:center;" action="" type="submit">Sign in</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
 
     </div> <!-- /container -->
+
 {% endblock %}

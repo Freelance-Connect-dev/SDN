@@ -20,12 +20,18 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = UserProfile
         fields = ['website','bio','phone','city','country','organization']
+        exclude = ['resume']
 
 
 class UserLoginForm(forms.Form):
     username = forms.CharField()
     password = forms.CharField(widget=forms.PasswordInput)
 
+class UploadResumeForm(forms.ModelForm):
+	class Meta:
+		model = UserProfile
+		fields = ['resume']
+		exclude = ['website','bio','phone','city','country','organization']
 
 class UploadFileForm(forms.ModelForm):
 

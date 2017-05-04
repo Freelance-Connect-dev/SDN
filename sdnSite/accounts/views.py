@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from .models import UserProfile, ProfilePicture
 from django.http import JsonResponse
 from django.db.models import Q
-from .forms import UserForm, UploadFileForm, UserLoginForm
+from .forms import UserForm, UploadFileForm, UserLoginForm, UploadResumeForm
 from django.views import generic
 from django.views.generic import View
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
@@ -19,9 +19,9 @@ class AccountView(generic.DetailView):
     template_name = 'accounts/account.html'
 
     #user profile is loaded in account.html without context
-    def get(self, request, profilename):
+    def get(self, request):
+        profilename = request.user.username
         #this is not working, need new field to query on
-        print (profilename)
         profile = UserProfile.objects.get(user__username=profilename)
         return render(request, self.template_name, {'profile' : profile})
 
@@ -75,6 +75,17 @@ class UserFormView(View):
 
 
 # Create your method views here. -- these should be reconfigured to class views
+
+def uploadResume(request):
+	resumeForm = UploadResumeForm()
+	if request.method=="POST":
+		resumeForm = UploadResumeForm(request.POST, request.FILES)
+		if resumeForm.is_valid():
+			resumeForm.save()
+			return redirect('home:index')
+		else:
+			resumeForm = UploadResumeForm()
+	return render(request,'accounts/profilepicture_form.html',{'form':resumeForm})
 
 def uploadfile(request):
 	img = UploadFileForm()

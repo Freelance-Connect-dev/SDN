@@ -8,15 +8,14 @@ from django.contrib.auth import views as auth_views
 #   views.method_name for method reference from views.py.
 ###############################################################################
 urlpatterns = [
-    # SDN.com/accounts/
-    url(r'^$', views.AccountView.as_view(), name="account_page"),
     # SDN.com/accounts/register/
     url(r'^register/$',views.UserFormView.as_view(),name='register'),
     # SDN.com/accounts/login_user/
     url(r'^login_user/$',views.LoginView.as_view(),name='login_user'),
     # SDN.com/accounts/logout_user
     url(r'^logout_user/$',views.LogoutView.as_view(),name='logout_user'),
-	# SDN.com/accounts/logout_user
-    #url(r'^upload_file/$',views.UploadFile.as_view(),name='upload_file'),
 	url(r'^upload_file/$',views.uploadfile,name='upload_file'),
+	url(r'^upload_resume/$',views.uploadResume,name='upload_resume'),
+	# SDN.com/accounts/ ^(?P<profilename>)
+    url(r'^$', views.AccountView.as_view(), name="account_page"),
 ]

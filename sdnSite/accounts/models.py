@@ -14,6 +14,7 @@ class UserProfile(models.Model):
     country = models.CharField(max_length=100, default='', blank=True)
     organization = models.CharField(max_length=100, default='', blank=True)
     resume = models.FileField(upload_to="resumes",default="resumes/hello.txt")
+    picture = models.ImageField(upload_to="profile_pictures",default="profile_pictures/Happy_Toby.jpg")
 	
     @receiver(post_save,sender=User)
     def create_user_profile(sender, instance, created, **kwargs):

@@ -21,12 +21,8 @@ class AccountView(generic.DetailView):
     #user profile is loaded in account.html without context
     def get(self, request):
         profilename = request.user.username
-        #this is not working, need new field to query on
         profile = UserProfile.objects.get(user__username=profilename)
         return render(request, self.template_name, {'profile' : profile})
-
-
-
 
 # User creation
 class UserFormView(View):
@@ -79,7 +75,9 @@ class UserFormView(View):
 def uploadResume(request):
 	resumeForm = UploadResumeForm()
 	if request.method=="POST":
-		resumeForm = UploadResumeForm(request.POST, request.FILES)
+		profilename = request.user.username
+		profile = UserProfile.objects.get(user__username=profilename)
+		resumeForm = UploadResumeForm(request.POST, request.FILES,instance=profile)
 		if resumeForm.is_valid():
 			resumeForm.save()
 			return redirect('home:index')

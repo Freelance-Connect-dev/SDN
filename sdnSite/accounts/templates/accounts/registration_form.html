@@ -1,0 +1,36 @@
+<!-- This page will only be used in visitor context, so always extends base_visitor.html -->
+{% extends 'accounts/base.html' %}
+{% block title %}Create Account{% endblock %}
+<!-- Tell django that user account is being registered -->
+{% block register_active %}active{% endblock %}
+
+<!-- start block body, this is what is inserted into base_visitor.html -->
+{% block body %}
+<div class="container-fluid">
+
+    <div class="row">
+
+      <div class="col-sm-12 col-md-7">
+        <div class="panel panel-default">
+          <div class="panel-body">
+
+            <form class="form-horizontal" action="" method="post">
+              <!-- Cross site request forgery protection, handled by Django -->
+              {% csrf_token %}
+              <!-- insert relevant form for registering user (based on forms.py) -->
+              {% include 'accounts/form_template.html' %}
+              <div class='form-group'>
+                <div class='col-sm-offset-2 col-sm-10'>
+                  <button type="submit" class="btn btn-success">Submit</button>
+                </div>
+              </div>
+            </form>
+
+          </div>
+        </div>
+      </div>
+
+  </div>
+
+</div>
+{% endblock %}

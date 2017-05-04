@@ -27,6 +27,8 @@ DEBUG = False
 
 ALLOWED_HOSTS = ['54.224.26.214']
 
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
 
 # Application definition
 
@@ -86,6 +88,8 @@ DATABASES = {
 }
 
 
+
+AUTH_PROFILE_MODULE = "accounts.UserProfile"
 # Password validation
 # https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
 
